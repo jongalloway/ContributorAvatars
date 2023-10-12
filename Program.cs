@@ -36,32 +36,32 @@ AnsiConsole.WriteLine($"Total contributors:{usernames.Count}");
 string directory = "images";
 Directory.CreateDirectory(directory);
 
-int actualAvatars = 0;
-
-var downloadResults = AnsiConsole.Progress().Start(async ctx =>
+await AnsiConsole.Progress().StartAsync(async ctx =>
 {
     var downloadTask = ctx.AddTask("Downloading...", maxValue: usernames.Count);
 
     foreach (var username in usernames)
     {
+        // check if the file already exists and skip
+        if (File.Exists($"{directory}/{username}.png"))
+        {
+            downloadTask.Increment(1);
+            continue;
+        }
+
         var response = await client.GetAsync($"https://www.github.com/{username}.png?size=200");
         if (response.IsSuccessStatusCode)
         {
             var image = await response.Content.ReadAsByteArrayAsync();
-            //AnsiConsole.WriteLine(image.Length);
             if (image.Length > 1800)
             {
                 //await File.WriteAllBytesAsync($"{directory}/{Random.Shared.Next(10000)}-{username}.png", image);
                 await File.WriteAllBytesAsync($"{directory}/{username}.png", image);
-                actualAvatars++;
             }
         }
         downloadTask.Increment(1);
     }
 });
-
-int h = (int)Math.Round(Math.Sqrt(actualAvatars / 1.7778));
-int w = (int)Math.Round(h * 1.7778);
 
 using var images = new MagickImageCollection();
 
@@ -71,6 +71,10 @@ foreach (var file in files)
 {
     images.Add(file);
 }
+
+int actualAvatars = images.Count;
+int h = (int)Math.Round(Math.Sqrt(actualAvatars / 1.7778));
+int w = (int)Math.Round(h * 1.7778);
 
 var settings = new MontageSettings
 {
@@ -83,7 +87,7 @@ var settings = new MontageSettings
 int surplus = images.Count - (w * h);
 if (surplus > 0)
 {
-    AnsiConsole.WriteLine($"Removing {surplus} images from the end.");
+    AnsiConsole.WriteLine($"Removing {surplus} random avatars to fit an even multiple.");
     for (int i = 0; i < surplus; i++)
     {
         // remove a random image from the middle
