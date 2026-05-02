@@ -21,7 +21,7 @@ ContributorAvatars:
 
 ## Prerequisites
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later
+- [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or later
 - [ImageMagick](https://imagemagick.org/) (optional, for manual image manipulation)
 
 ## Installation
@@ -72,8 +72,8 @@ magick montage -geometry 200x200+0+0 -tile {w}x{h} images/*.png contributors.png
 
 ### Dependencies
 
-- **[Magick.NET-Q16-AnyCPU](https://github.com/dlemstra/Magick.NET)** (v13.3.0): .NET wrapper for ImageMagick, used for image processing and montage creation
-- **[Spectre.Console](https://spectreconsole.net/)** (v0.47.0): Library for creating beautiful console applications with progress bars and status displays
+- **[Magick.NET-Q16-AnyCPU](https://github.com/dlemstra/Magick.NET)** (v14.9.1): .NET wrapper for ImageMagick, used for image processing and montage creation
+- **[Spectre.Console](https://spectreconsole.net/)** (v0.53.0): Library for creating beautiful console applications with progress bars and status displays
 
 ### How it Works
 
