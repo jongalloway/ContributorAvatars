@@ -4,3 +4,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "Magick.NET-Q16-AnyCPU"
+        update-types:
+          - "version-update:semver-patch"
