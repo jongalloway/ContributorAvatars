@@ -83,10 +83,6 @@ magick montage -geometry 200x200+0+0 -tile {w}x{h} images/*.png contributors.png
 - **[Magick.NET-Q16-AnyCPU](https://github.com/dlemstra/Magick.NET)** (v15.0.0): .NET wrapper for ImageMagick, used for image processing and montage creation
 - **[Spectre.Console](https://spectreconsole.net/)** (v0.57.2): Library for creating beautiful console applications with progress bars and status displays
 
-### C# modernization review
-
-See the [C# modernization assessment](.github/upgrades/scenarios/dotnet-version-upgrade/csharp-language-modernization-assessment.md) for recommendations and features that do not benefit this application. The framework upgrade does not introduce unrelated source refactors.
-
 ### How it Works
 
 1. **Data Retrieval**: Fetches contributor information from `https://dotnet.microsoft.com/blob-assets/json/thanks/core.json`

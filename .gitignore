@@ -5,6 +5,7 @@
 
 # Project-specific ignores
 /images/
+/.github/upgrades/
 *.png
 *.jpg
 *.csv
