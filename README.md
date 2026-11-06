@@ -21,8 +21,16 @@ ContributorAvatars:
 
 ## Prerequisites
 
-- [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or later
+- [.NET 11 SDK](https://dotnet.microsoft.com/download/dotnet/11.0): RC3 (`11.0.100-rc.3.26522.148`) or a newer .NET 11.0 SDK, including GA
 - [ImageMagick](https://imagemagick.org/) (optional, for manual image manipulation)
+
+### .NET version selection
+
+`global.json` selects the latest installed .NET 11.0 SDK feature band at or above RC3 (`rollForward: latestFeature`, `allowPrerelease: true`). Targeting `net11.0` enables C# 15 by default, without a preview language setting.
+
+The project uses RC3 (`11.0.0-rc.3.26522.148`) as its minimum runtime and `RollForward=LatestMinor`. Framework-dependent launches prefer the highest installed .NET 11 runtime, including GA even when RC3 remains installed. Neither SDK nor runtime selection rolls forward to .NET 12.
+
+Install the .NET 11 GA SDK/runtime when available; roll-forward selects installed versions, it does not download them. Self-contained deployments bundle their runtime and must be republished to update it.
 
 ## Installation
 
@@ -72,8 +80,12 @@ magick montage -geometry 200x200+0+0 -tile {w}x{h} images/*.png contributors.png
 
 ### Dependencies
 
-- **[Magick.NET-Q16-AnyCPU](https://github.com/dlemstra/Magick.NET)** (v14.9.1): .NET wrapper for ImageMagick, used for image processing and montage creation
-- **[Spectre.Console](https://spectreconsole.net/)** (v0.53.0): Library for creating beautiful console applications with progress bars and status displays
+- **[Magick.NET-Q16-AnyCPU](https://github.com/dlemstra/Magick.NET)** (v15.0.0): .NET wrapper for ImageMagick, used for image processing and montage creation
+- **[Spectre.Console](https://spectreconsole.net/)** (v0.57.2): Library for creating beautiful console applications with progress bars and status displays
+
+### C# modernization review
+
+See the [C# modernization assessment](.github/upgrades/scenarios/dotnet-version-upgrade/csharp-language-modernization-assessment.md) for recommendations and features that do not benefit this application. The framework upgrade does not introduce unrelated source refactors.
 
 ### How it Works
 

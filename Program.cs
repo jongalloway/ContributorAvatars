@@ -165,8 +165,13 @@ HashSet<string> ParseJsonContributors(string json, string version)
 
     if (data != null)
     {
-        foreach (JsonNode node in data.AsArray())
+        foreach (JsonNode? node in data.AsArray())
         {
+            if (node is null)
+            {
+                throw new JsonException("Contributor release entries must not be null.");
+            }
+
             if (node["Version"]?.GetValue<string>() == version)
             {
                 var contributors = node["Contributors"]?.AsArray();
@@ -174,6 +179,11 @@ HashSet<string> ParseJsonContributors(string json, string version)
                 {
                     foreach (var contributor in contributors)
                     {
+                        if (contributor is null)
+                        {
+                            throw new JsonException("Contributor entries must not be null.");
+                        }
+
                         string? link = contributor["Link"]?.GetValue<string>();
                         if (link != null)
                         {
