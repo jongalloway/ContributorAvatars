@@ -16,7 +16,7 @@ ContributorAvatars:
 - **Progress Tracking**: Uses Spectre.Console to display download progress in the terminal
 - **Intelligent Caching**: Skips downloading avatars that already exist locally
 - **Random Arrangement**: Shuffles avatar positions for unique results each run
-- **Error Handling**: Validates downloaded images (minimum 1800 bytes) to filter out placeholder images
+- **Error Handling**: Validates downloaded images (minimum 3.5 KB / 3500 bytes) to filter out placeholder images
 - **Image Size Optimization**: Automatically adjusts the number of avatars to fit evenly into the calculated grid
 
 ## Prerequisites

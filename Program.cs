@@ -33,7 +33,7 @@ await AnsiConsole.Progress().StartAsync(async ctx =>
         {
             var image = await response.Content.ReadAsByteArrayAsync();
             //Console.WriteLine(image.Length);
-            if (image.Length > 1800)
+            if (image.Length >= 3500)
             {
                 //await File.WriteAllBytesAsync($"{directory}/{Random.Shared.Next(10000)}-{username}.png", image);
                 await File.WriteAllBytesAsync($"{directory}/{username}.png", image);
